@@ -7,7 +7,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
         
 
-		<title>도서검색</title>
+		<title>블로그검색</title>
 		<style>
         @font-face{font-family:Namsan; src:url("08SeoulNamsanB_0.tff")}
         
@@ -15,7 +15,7 @@
            #list{padding:20px;margin-top:10px;margin-bottom:10px;}
            #btnMore{margin:10px;}
            #btnUp{margin:10px;}
-           #info_content{text-align:center;margin:0px auto;
+           #info_content{text-align:center;margin:0px auto;padding-left:100px;padding-right:100px;
                          }
             #inside{padding:10px;background-color:khaki; border:olivedrab solid 3px;}
             #contents{text-align:left;font-family:Namsan;}
@@ -25,7 +25,7 @@
 		<div data-role="page" id="main">
             <div data-role="header" data-theme="b" data-position="fixed">
                 <a href="index.html" data-icon="home" target="_self" data-iconpos="notext"> 메인 </a>
-                <h2> 도서검색 </h2>
+                <h2> 블로그검색 </h2>
             </div>
             <div data-role="content">
                 <input type="text" id="txtQuery" value="자바"/>
@@ -45,11 +45,11 @@
                 <h2> 인천일보 아카데미 탠 </h2>
             </div>
         </div>
-        <!--도서정보페이지-->
+        <!--블로그정보페이지-->
         <div data-role="page" id="info">
             <div data-role="header" data-theme="b" data-position="fixed">
                 <a href="#main" data-icon="back" data-iconpos="notext" ></a>
-                <h2> 도서정보 </h2>
+                <h2> 블로그정보 </h2>
                 
             </div>
             <div data-role="content" id="info_content" >
@@ -69,15 +69,7 @@
             var size=10;
          getList();
          $("#list").on("click","a",function(){
-             var title=$(this).attr("title");
-             var authors=$(this).attr("authors");
-             var contents=$(this).attr("contents");
-             var price=$(this).attr("price");
-             var image=$(this).find("img").attr("src");
-             $("#image").attr("src",image);
-             $("#title").html("' "+title+" '");
-             $("#authors").html(authors + " 著");
-             $("#contents").html(contents);
+            
          });
          $("#btnMore").on("click",function(){
              size+=5;
@@ -97,7 +89,7 @@
              var query=$("#txtQuery").val();
              $.ajax({
                  type:"get",
-                 url:"https://dapi.kakao.com/v3/search/book?target=title",
+                 url:"https://dapi.kakao.com/v2/search/blog",
                  dataType:"json",
                  data:{"query":query, "size":size},
                  headers:{"Authorization": "KakaoAK 87b6d3ba1453e7fad641622a3362f4c3"},
